@@ -7,7 +7,7 @@ mongoose.set('strictQuery', true)
 app.use(express.json())
 
 
-mongoose.connect("mongodb+srv://Vinay1997:Z4AKcP40EXSsGdcj@vinay.0stv4ut.mongodb.net/group12Database?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://Vinay1997:Z4AKcP40EXSsGdcj@vinay.0stv4ut.mongodb.net/group12DB?retryWrites=true&w=majority",
 {useNewUrlParser:true})
 
 .then(()=> console.log("MongoDb is connected"))

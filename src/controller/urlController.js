@@ -10,13 +10,20 @@ try{
         return res.status(400).send({status:false, message:"Please provide longUrl"})
     }
     let {longUrl}=data
-    if(!isvalidUrl.test(longUrl)) return res.status(400).send({status:false,message:"Please Provide Valid Url"})
+    if(longUrl){
+    if(!isvalidUrl.test(longUrl)){
+        return res.status(400).send({status:false,message:"Please Provide Valid Url"})
+    }else{
+        let duplicateUrl=await urlModel.findOne({longUrl:longUrl})
+        if(duplicateUrl) return res.status(400).send({status:false,message:"This longUrl already taken"})
+    }
+    }
     let urlCode= shortId.generate()
-    let shorturl="https://localhost:3000/"+urlCode
-    data.urlCode=urlCode
-    data.shorturl=shorturl
-    await urlModel.create(data)
-    return res.status(200).send({status:true,message:"url",data})
+    if(!shortId.isValid(urlCode)) return res.status(400).send({status:false,message:"Invalid Short Url"})
+    if(!urlCode) return res.status(400).send({status:false, message:"urlcode not present"})
+    let url={longUrl,shortUrl:`https://localhost:3000/${urlCode}`,urlCode}
+    await urlModel.create(url)
+    return res.status(200).send({status:true,message:"url",data:url})
 }catch(error){
     return res.status(500).send({status:false,message:error.message})
 }
