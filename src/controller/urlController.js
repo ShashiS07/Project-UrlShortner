@@ -3,6 +3,8 @@ const shortId=require('shortid')
 
 let isvalidUrl= /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
 
+// ===================================create short Url========================================
+
 const createUrl=async function(req,res){
 try{
     let data= req.body
@@ -28,6 +30,8 @@ try{
     return res.status(500).send({status:false,message:error.message})
 }
 }
+
+// ===================================get redirect url===============================
 
 const geturl=async function(req,res){
 try{
