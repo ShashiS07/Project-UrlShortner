@@ -21,7 +21,7 @@ try{
     let urlCode= shortId.generate()
     if(!shortId.isValid(urlCode)) return res.status(400).send({status:false,message:"Invalid Short Url"})
     if(!urlCode) return res.status(400).send({status:false, message:"urlcode not present"})
-    let url={longUrl,shortUrl:`https://localhost:3000/${urlCode}`,urlCode}
+    let url={longUrl,shortUrl:`https://localhost:3000/${urlCode.toLowerCase()}`,urlCode}
     await urlModel.create(url)
     return res.status(200).send({status:true,message:"url",data:url})
 }catch(error){
@@ -29,4 +29,21 @@ try{
 }
 }
 
-module.exports={createUrl}
+const geturl=async function(req,res){
+try{
+    let urlCode=req.params.urlCode
+    if(urlCode==":urlCode") return res.status(400).send({status:false, message:"Please Provide Value"})
+    console.log(urlCode)
+    if(!shortId.isValid(urlCode)) return res.status(400).send({status:false,message:"Invalid url"})
+
+    let findurl=await urlModel.findOne({urlCode})
+    if(!findurl) return res.status(400).send({status:false,message:"Url is not found"})   
+    
+    let data=findurl.longUrl
+
+    return res.status(302).redirect(data)
+}catch(error){
+    return res.status(500).send({status:false})
+}
+}
+module.exports={createUrl,geturl}
