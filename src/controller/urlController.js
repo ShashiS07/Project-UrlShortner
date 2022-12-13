@@ -19,7 +19,7 @@ try{
     let urlfound = false
 
     await axios.get(longUrl)
-    .then((res)=>{if (res.status == 200 || res.status == 201) urlfound = true})
+    .then((longUrl)=>{if (longUrl) urlfound = true})
     .catch(()=>{})
 
     if (urlfound == false){
