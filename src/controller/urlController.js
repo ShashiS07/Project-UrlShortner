@@ -18,15 +18,13 @@ try{
 
     let urlfound = false
 
-    // let checkvalidUrl = await axios.get(longUrl)
-    // .then((res)=>{if (res.status == 200 || res.status == 201) urlfound = true})
-    // .catch(()=>{})
+    await axios.get(longUrl)
+    .then((res)=>{if (res.status == 200 || res.status == 201) urlfound = true})
+    .catch(()=>{})
 
-    // if (urlfound == false){
-    //     return res.status(400).send({status : false , message : "invalid URL"})
-    // }
-
-    // if(!checkvalidUrl) return res.status(404).send({status:false,message:"Url not found"})
+    if (urlfound == false){
+        return res.status(400).send({status : false , message : "invalid URL"})
+    }
 
     if(longUrl){
         if(!isvalidUrl.test(longUrl)){
