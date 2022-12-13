@@ -16,11 +16,14 @@ try{
     if(!isvalidUrl.test(longUrl)){
         return res.status(400).send({status:false,message:"Please Provide Valid Url"})
     }else{
-        let duplicateUrl=await urlModel.findOne({longUrl:longUrl})
-        if(duplicateUrl) return res.status(400).send({status:false,message:"This longUrl already taken"})
+        let alreadypresent=await urlModel.findOne({longUrl:longUrl})
+        if(alreadypresent){
+           var urlCode=alreadypresent.urlCode
+        }else{
+            var urlCode= shortId.generate()
+        }
     }
-    }
-    let urlCode= shortId.generate()
+}
     if(!shortId.isValid(urlCode)) return res.status(400).send({status:false,message:"Invalid Short Url"})
     if(!urlCode) return res.status(400).send({status:false, message:"urlcode not present"})
     let url={longUrl,shortUrl:`https://localhost:3000/${urlCode.toLowerCase()}`,urlCode}
