@@ -89,7 +89,7 @@ try{
     }
     let findurl=await urlModel.findOne({urlCode})
     if(!findurl){
-        return res.status(400).send({status:false,message:"Url is not found"}) 
+        return res.status(404).send({status:false,message:"Url is not found"}) 
     }else{
         await SET_ASYNC(`${urlCode}`,JSON.stringify(findurl))
         return res.status(302).redirect(findurl.longUrl)
