@@ -41,14 +41,14 @@ try{
         return res.status(400).send({status:false,message:"Please Provide Valid Url"})
     }
 
-    // let urlfound = false
-    // await axios.get(longUrl)
-    // .then((longUrl)=>{if (longUrl) urlfound = true})
-    // .catch(()=>{})
+    let urlfound = false
+    await axios.get(longUrl)
+    .then((longUrl)=>{if (longUrl) urlfound = true})
+    .catch(()=>{})
 
-    // if (urlfound == false){
-    //     return res.status(400).send({status : false , message : "invalid URL"})
-    // }
+    if (urlfound == false){
+        return res.status(400).send({status : false , message : "invalid URL"})
+    }
 
     let checkincache=await GET_ASYNC(`${longUrl}`)
     let urlData=JSON.parse(checkincache)
