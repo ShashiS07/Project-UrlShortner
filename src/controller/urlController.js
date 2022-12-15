@@ -54,13 +54,13 @@ try{
     let checkincache=await GET_ASYNC(`${longUrl}`)
     if(checkincache){
         let urlData=JSON.parse(checkincache)
-        console.log("redis")
+
         return res.status(201).send({status:true, message:"URL is already shortened",data:urlData})
     }
     let urlpresent= await urlModel.findOne({longUrl}).select({ createdAt: 0, updatedAt: 0, __v: 0, _id: 0 })
     if(urlpresent){
         await SET_ASYNC(`${longUrl}`,JSON.stringify(urlpresent),"EX",300);
-        console.log("db")
+
         return res.status(201).send({status:true, message:"URL is already shortened",data:urlpresent})
     }
     let baseUrl="https://localhost:3000/"
