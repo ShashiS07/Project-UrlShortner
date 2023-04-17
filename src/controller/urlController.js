@@ -6,11 +6,11 @@ const { promisify } = require("util");
 
 
 const redisClient = redis.createClient(
-    10797,
-    "redis-10797.c264.ap-south-1-1.ec2.cloud.redislabs.com",
+    10479,
+    "redis-10479.c305.ap-south-1-1.ec2.cloud.redislabs.com",
     { no_ready_check: true }
   );
-  redisClient.auth("sT6NJhwSeQrEj3Gap9OhzuMuTmxoHoja", function (err) {
+  redisClient.auth("qUZaaREl5VhY4aCMFZHv6ERG8HWUdh97", function (err) {
     if (err) throw err;
   });
   
@@ -47,14 +47,14 @@ try{
         console.log("redis")
         return res.status(201).send({status:true, message:"URL is already shortened",data:urlData})
     }
-    let urlfound = false
-    await axios.get(longUrl)
-    .then((res)=>{if(res.status==200 ||res.status==201) urlfound = true})
-    .catch(()=>{})
+    // let urlfound = false
+    // await axios.get(longUrl)
+    // .then((res)=>{if(res.status==200 ||res.status==201) urlfound = true})
+    // .catch(()=>{})
 
-    if (urlfound == false){
-        return res.status(400).send({status : false , message : "invalid URL"})
-    }
+    // if (urlfound == false){
+    //     return res.status(400).send({status : false , message : "invalid URL"})
+    // }
 
     let urlpresent= await urlModel.findOne({longUrl}).select({ createdAt: 0, updatedAt: 0, __v: 0, _id: 0 })
     if(urlpresent){
@@ -63,7 +63,7 @@ try{
         return res.status(201).send({status:true, message:"URL is already shortened",data:urlpresent})
     }
     let urlCode=shortId.generate().toLowerCase()
-    let baseUrl="https://localhost:3000/"
+    let baseUrl="http://localhost:4000/"
     let shortUrl=`${baseUrl}${urlCode}`
     let url={longUrl,shortUrl,urlCode}
 
