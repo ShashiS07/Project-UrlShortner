@@ -31,7 +31,7 @@ If you haven’t used tinyurl.com before, please try creating a new shortened UR
 - Ensure the same response is returned for an original url everytime
 - Return HTTP status 400 for an invalid request.
 
-- Screenshot (1111).png
+Screenshot (1111).png
 
 ### GET /:urlCode
 - Redirect to the original URL corresponding
@@ -39,4 +39,4 @@ If you haven’t used tinyurl.com before, please try creating a new shortened UR
 - Return a suitable error for a url not found
 - Return HTTP status 400 for an invalid request
 
-- Screenshot (1113).png
+Screenshot (1113).png
