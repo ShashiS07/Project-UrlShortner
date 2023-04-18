@@ -1,3 +1,7 @@
+## URL Shortner MERN PROJECT.
+- Code is deivided into two files. i.e. client and server.
+- In Client I have implement the Fronted Part and In server the backend code is written
+
 ## Overview
 URL shortening is used to create shorter aliases for long URLs. We call these shortened aliases “short links.” Users are redirected to the original URL when they hit these short links. Short links save a lot of space when displayed, printed, messaged, or tweeted. Additionally, users are less likely to mistype shorter URLs.
 
@@ -31,7 +35,8 @@ If you haven’t used tinyurl.com before, please try creating a new shortened UR
 - Ensure the same response is returned for an original url everytime
 - Return HTTP status 400 for an invalid request.
 
-Screenshot (1111).png
+![Screenshot (1111)](https://user-images.githubusercontent.com/115537478/232717143-9df48b3e-6e88-4090-b9fc-f3ffd775ec93.png)
+
 
 ### GET /:urlCode
 - Redirect to the original URL corresponding
@@ -39,4 +44,4 @@ Screenshot (1111).png
 - Return a suitable error for a url not found
 - Return HTTP status 400 for an invalid request
 
-Screenshot (1113).png
+![Screenshot (1113)](https://user-images.githubusercontent.com/115537478/232717356-5f05a14c-b010-4d7a-88ef-bfdb1fe5f4d1.png)
