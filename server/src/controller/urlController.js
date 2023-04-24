@@ -63,7 +63,7 @@ try{
         return res.status(201).send({status:true, message:"URL is already shortened",data:urlpresent})
     }
     let urlCode=shortId.generate().toLowerCase()
-    let baseUrl="http://localhost:4000/"
+    let baseUrl="https://url-shortner-backend-hnb3.onrender.com/"
     let shortUrl=`${baseUrl}${urlCode}`
     let url={longUrl,shortUrl,urlCode}
 
