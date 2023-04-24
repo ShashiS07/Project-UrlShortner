@@ -9,7 +9,7 @@ function App() {
   const [shortUrl, setShortUrl] = useState("")
   const handleUrl = (event) => {
     event.preventDefault()
-    axios.post('https://url-shortner-backend-q545.onrender.com/url/shorten', { longUrl, shortUrl })
+    axios.post('http://localhost:4000/url/shorten', { longUrl, shortUrl })
       .then((res) => {
         setShortUrl(res.data.data.shortUrl)
         // alert(res.data.message)
